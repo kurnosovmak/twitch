@@ -1,0 +1,9 @@
+vendor
+.idea/
+.phpstorm.meta.php
+config/app.*.yaml
+.phpunit.result.cache
+.php_cs.cache
+.env.local
+.env.*.local
+.env
