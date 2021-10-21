@@ -26,13 +26,13 @@ class HomeController
         $name = isset($request->getQueryParams()['name'])?$request->getQueryParams()['name']:'';
 
         try {
-            $data = $this->twig->render('hello.html.twig', [
-                'name' => 'alex '.$name,
-            ]);
-
-//            $data = $this->twig->render('home/index.html.twig', [
-//                'trailers' => $this->fetchData(),
+//            $data = $this->twig->render('hello.html.twig', [
+//                'name' => 'alex '.$name,
 //            ]);
+
+            $data = $this->twig->render('home/index.html.twig', [
+                'trailers' => $this->fetchData(),
+            ]);
         } catch (\Exception $e) {
             throw new HttpBadRequestException($request, $e->getMessage(), $e);
         }

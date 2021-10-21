@@ -3,14 +3,42 @@
 {% block title %}{{ trailers | length }} iTunes Movie trailers{% endblock %}
 
 {% block content %}
+    <style>
+        .title-link{
+            color: #212529;
+        }
+        .title-link:hover{
+            color: #212529;
+            opacity: 0.7;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .scale {
+            transition: 0.5s; /* Время эффекта */
+        }
+        .scale:hover {
+            transform: scale(1.05); /* Увеличиваем масштаб */
+        }
+    </style>
     <div class="container">
         <h1 class="mt-5 mb-4">{{ trailers | length }} iTunes Movie trailers</h1>
-        <table class="table table-bordered">
-            {% for trailer in trailers %}
-                <tr>
-                    <td>{{ trailer.title }}</td>
-                </tr>
-            {% endfor %}
-        </table>
+        <div class="container">
+            <div class="row">
+                {% for trailer in trailers %}
+                    <div class="col-sm-12 col-md-4 .col-lg-3 .col-xl-2" style="padding: 15px;">
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-top scale" src="{{ trailer.image }}" alt="Card image cap">
+                            <div class="card-body">
+                                <a target="_blank" rel="noopener noreferrer" class="title-link" href="{{ trailer.link }}"><h5 class="card-title">{{ trailer.title }}</h5></a>
+                                {#                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>#}
+                                {#                            <a href="#" class="btn btn-primary">Go somewhere</a>#}
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}
