@@ -95,14 +95,8 @@ class FetchDataCommand extends Command
             if($count>=self::MAX_COUNT)break;
 
             // get image poster
-            $e_content = $item->children("content", true);
-            $e_encoded = (string)$e_content->encoded;
-            $doc = new \DOMDocument();
-            $doc->loadHTML($e_encoded);
-            $selector = new \DOMXPath($doc);
 
-            $image_src = $selector->query('//img')[0]->getAttribute('src');
-
+            $image_src = $this->getImage($item);
 
             $trailer = $this->getMovie((string) $item->title)
                 ->setTitle((string) $item->title)
@@ -124,6 +118,17 @@ class FetchDataCommand extends Command
     protected function parseDate(string $date): \DateTime
     {
         return new \DateTime($date);
+    }
+
+    protected function getImage($item): string{
+        $e_content = $item->children("content", true);
+        $e_encoded = (string)$e_content->encoded;
+        $doc = new \DOMDocument();
+        $doc->loadHTML($e_encoded);
+        $selector = new \DOMXPath($doc);
+
+        $image_src = $selector->query('//img')[0]->getAttribute('src');
+        return $image_src;
     }
 
     protected function getMovie(string $title): Movie
