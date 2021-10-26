@@ -1,6 +1,19 @@
 version: '3.7'
 
 services:
+  web:
+    image: nginx
+    volumes:
+      - .:/var/www/app
+      - ./logs/nginx:/var/log/nginx
+      - ./hosts:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    links:
+      - app
   app:
     build:
       dockerfile: docker/php-dev.Dockerfile
@@ -11,13 +24,15 @@ services:
       COMPOSER_MEMORY_LIMIT: -1
       COMPOSER_ALLOW_SUPERUSER: 1
       APP_ENV: 'dev'
+    links:
+      - database
     ports:
-      - 8080:8080
+      - 9000:8080
 
   database:
     image: mysql:5.7
     ports:
-      - 3306:3306
+      - 3305:3306
     environment:
       MYSQL_ROOT_PASSWORD: mysql
       MYSQL_DATABASE: slim_project

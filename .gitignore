@@ -1,5 +1,6 @@
 vendor
 .idea/
+logs/
 .phpstorm.meta.php
 config/app.*.yaml
 .phpunit.result.cache
@@ -7,3 +8,4 @@ config/app.*.yaml
 .env.local
 .env.*.local
 .env
+
