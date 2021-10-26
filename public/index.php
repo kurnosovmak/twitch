@@ -11,6 +11,7 @@ use Slim\Middleware\ErrorMiddleware;
 use Slim\Middleware\RoutingMiddleware;
 use Slim\Psr7\Factory\ServerRequestFactory;
 
+
 $container = require dirname(__DIR__) . '/bootstrap.php';
 $request = ServerRequestFactory::createFromGlobals();
 

@@ -1,6 +1,31 @@
 Тестовое задание для PHP-программиста
 =====================================
 
+
+
+Install
+--------------
+In file .env set DATABASE param. <br>
+Then run command line by line. 
+```
+1 git clone https://github.com/kurnosovmak/twitch.git
+2 cd twitch
+3 docker-compose build
+4 docker-compose up -d
+5 docker-compose exec -ti app /bin/ash
+6 composer install
+7 php bin/console orm:schema-tool:update --force
+8 php bin/console fetch:trailers
+```
+
+[comment]: <> (Routes)
+
+[comment]: <> (--------------)
+
+[comment]: <> (/ - all trails <br>)
+
+[comment]: <> (/?id=1 - one trail)
+
 JUNIOR-уровень
 --------------
 
